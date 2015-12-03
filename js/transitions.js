@@ -3,7 +3,7 @@ define( function ( require ) {
 	"use strict";
     
 	var $ = require( 'jquery' );
-    var Velocity = require ( 'theme/js/velocity.min' );
+    require ( 'theme/js/velocity.min' );
 	var TplTags = require ( 'core/theme-tpl-tags' );
 	var Storage = require ( 'core/modules/storage' );
 

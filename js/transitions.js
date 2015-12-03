@@ -4,6 +4,8 @@ define( function ( require ) {
     
 	var $ = require( 'jquery' );
     var Velocity = require ( 'theme/js/velocity.min' );
+	var TplTags = require ( 'core/theme-tpl-tags' );
+	var Storage = require ( 'core/modules/storage' );
 
 	var config = {
 		delay: 300
@@ -11,17 +13,15 @@ define( function ( require ) {
     
 	var transitions = { };
     
-    console.log("transitions.js loaded");
-    
 	transitions.slideLeft = function ( $wrapper, $current, $next, $deferred ) {
 		
-        console.log("slideLeft");
+        //console.log("slideLeft");
         
-        console.log($wrapper);
+        /*console.log($wrapper);
         console.log("---");
         console.log($current);
         console.log("---");
-        console.log($next);
+        console.log($next);*/
 
         //Set $next DOM element to the right of the screen (invisible) :
 		$next.css( {
@@ -62,7 +62,7 @@ define( function ( require ) {
 
 	transitions.slideRight = function ( $wrapper, $current, $next, $deferred ) {
 
-        console.log("slideRight");
+        //console.log("slideRight");
 
 		//Set $next DOM element to the left of the screen (invisible) :
 		$next.css( {
@@ -70,12 +70,19 @@ define( function ( require ) {
 			top: 0,
 			left: '-100%',
 			height: '100%',
-			width: '100%',
-			visibility: 'hidden'
+			width: '100%'
 		} );
-
+		
 		//Add $next to the left of the wrapper (still invisible)
 		$wrapper.prepend( $next );
+		
+		var current_screen = TplTags.getCurrentScreen();
+		var pos = Storage.get("scroll-pos",current_screen.fragment);
+		if( pos !== null ){
+			$("#content").scrollTop(pos);
+		}else{
+			scrollTop();
+		}
 
 		//Animate $wrapper to make $next appear from left to right
 		$wrapper.velocity(
@@ -102,7 +109,7 @@ define( function ( require ) {
 	
 	transitions.replace = function ( $wrapper, $current, $next, $deferred ) {
 		
-        console.log("replace");
+        //console.log("replace");
         
         $current.remove();
 		$wrapper.empty().append( $next );

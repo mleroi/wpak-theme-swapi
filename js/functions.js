@@ -120,19 +120,11 @@ define(['jquery','core/theme-app','core/modules/storage','core/theme-tpl-tags','
              * If a position has been memorized, scroll to it
              * If not, scroll to the top of the screen
              */
-            var pos = Storage.get("scroll-pos",current_screen.fragment);
-			if( pos !== null ){
-				$("#content").scrollTop(pos);
-			}else{
-				scrollTop();
-			}
+            //Done in transitions now!
 		}else{
 			scrollTop(); // Scroll to the top of screen if we're not displaying a Post List (eg. a Post)
 		}
 
-		$('.app-screen').css({visibility:'visible'});
-
-        
 	});
 
     /**

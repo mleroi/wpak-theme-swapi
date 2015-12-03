@@ -116,9 +116,14 @@ App.filter( 'template-args', function( template_args, view_type, view_template )
 			}else{
 				scrollTop();
 			}
+
+
 		}else{
 			scrollTop(); // Scroll to the top of screen if we're not displaying a Post List (eg. a Post)
 		}
+
+		$('.app-screen').css({visibility:'visible'});
+
         
 	});
 

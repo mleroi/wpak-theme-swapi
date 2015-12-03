@@ -72,7 +72,8 @@ define( function ( require ) {
 			top: 0,
 			left: '-100%',
 			height: '100%',
-			width: '100%'
+			width: '100%',
+			visibility: 'hidden'
 		} );
 
 		//Add $next to the left of the wrapper (still invisible)

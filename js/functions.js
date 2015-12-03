@@ -110,13 +110,7 @@ App.filter( 'template-args', function( template_args, view_type, view_template )
              * If a position has been memorized, scroll to it
              * If not, scroll to the top of the screen
              */
-            var pos = Storage.get("scroll-pos",current_screen.fragment);
-			if( pos !== null ){
-				$("#content").scrollTop(pos);
-			}else{
-				scrollTop();
-			}
-
+            //Done in transitions now!
 
 		}else{
 			scrollTop(); // Scroll to the top of screen if we're not displaying a Post List (eg. a Post)

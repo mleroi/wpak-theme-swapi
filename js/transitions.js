@@ -29,8 +29,6 @@ define( function ( require ) {
 		//Add $next to the end of the wrapper (still invisible)
 		$wrapper.append( $next );
 
-        //debugger;
-        
 		//Animate $wrapper to make $next appear from right to left
 		$wrapper.velocity(
 				{ left: '-100%' },

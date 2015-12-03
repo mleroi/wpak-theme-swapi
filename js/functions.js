@@ -11,32 +11,33 @@
  * (AMD) Theme App Core  available as    App
  * (AMD) Local Storage   available as    Storage
  * (AMD) Template Tags   avaialble as    TplTags
- * (AMD) Velocity 1.2.3  available as    Velocity (but used with jQuery) (http://julian.com/research/velocity/)
+ * Velocity (http://julian.com/research/velocity/)
  */
-define(['jquery','core/theme-app','core/modules/storage','core/theme-tpl-tags','theme/js/velocity.min','theme/js/transitions'],function($,App,Storage,TplTags,Velocity,Transitions){
+define(['jquery','core/theme-app','core/modules/storage','core/theme-tpl-tags','theme/js/jquery.velocity.min'],function($,App,Storage,TplTags){
 
 
-App.filter( 'template-args', function( template_args, view_type, view_template ) {
-
+    App.filter( 'template-args', function( template_args, view_type, view_template ) { 
+ 
         template_args.App = App;
-
+ 
         return template_args;
     } );
 
     App.filter( 'make-history', function(  history_action, history_stack, queried_screen_data, current_screen, previous_screen ) {
 
         if ( queried_screen_data.screen_type == 'single' ) {
-                if ( queried_screen_data.item_id != previous_screen.item_id ) {
-                        history_action = 'push';
-                } else {
-                        history_action = 'pop';
-                }
-        }
+		if ( queried_screen_data.item_id != previous_screen.item_id ) {
+			history_action = 'push';
+		} else {
+			history_action = 'pop';
+		}
+	}
 
         return history_action;
     } );
 
-    
+
+
 	/**
      * App Events
      */
@@ -90,6 +91,15 @@ App.filter( 'template-args', function( template_args, view_type, view_template )
      */
 	App.on('screen:showed',function(current_screen,view){
 
+        // Show/Hide back button depending on the displayed screen
+        if (TplTags.displayBackButton()) {
+            $("#back-button").css("display","block");
+			$("#menu-button").css("display","none");
+        } else {
+            $("#back-button").css("display","none");
+			$("#menu-button").css("display","block");
+        }
+
         // Close off-canvas menu
         if (isMenuOpen) {
 			$("#app-canvas").css("left","85%"); 
@@ -116,14 +126,9 @@ App.filter( 'template-args', function( template_args, view_type, view_template )
 			}else{
 				scrollTop();
 			}
-
-
 		}else{
 			scrollTop(); // Scroll to the top of screen if we're not displaying a Post List (eg. a Post)
 		}
-
-		$('.app-screen').css({visibility:'visible'});
-
         
 	});
 
@@ -142,8 +147,17 @@ App.filter( 'template-args', function( template_args, view_type, view_template )
         
     });
 
-    
-    
+    /**
+     * @desc Customizing the iOS status bar to match the theme, relies on // https://build.phonegap.com/plugins/715
+     */
+    try { // Testing if the Cordova plugin is available
+        StatusBar.overlaysWebView(false);
+        StatusBar.styleDefault();
+        StatusBar.backgroundColorByHexString("#F8F8F8");
+    } catch(e) {
+        console.log("StatusBar plugin not available");
+    }
+      
 	/**
      * UI events and variables
      */
@@ -167,9 +181,9 @@ App.filter( 'template-args', function( template_args, view_type, view_template )
 	$("#app-layout").on("click","#menu-items li a",menuItemTap);
 	$("#app-layout").on("click","#content .content-item a",contentItemTap);
 
-    App.setAutoScreenTransitions( Transitions.replace, Transitions.slideLeft, Transitions.slideRight );
-
-    
+	// Back button events
+    $("#app-layout").on("touchstart","#back-button",backButtonTapOn);
+    $("#app-layout").on("touchend","#back-button",backButtonTapOff);
     
     /**
      * Functions
@@ -318,6 +332,15 @@ App.filter( 'template-args', function( template_args, view_type, view_template )
 		$("#refresh-button").removeClass("refresh-on").addClass("refresh-off");	
 	}
 
+    function backButtonTapOn() {
+		$("#back-button").removeClass("button-tap-off").addClass("button-tap-on");
+	}
+
+    function backButtonTapOff() {
+		$("#back-button").removeClass("button-tap-on").addClass("button-tap-off");
+        App.navigate(TplTags.getPreviousScreenLink());
+	}
+    
     /**
      * @desc Scroll to the top of the screen
      * @param pos (in px)
@@ -344,7 +367,7 @@ App.filter( 'template-args', function( template_args, view_type, view_template )
      * @todo harmonize ways of naming event object and preventDefault() position
      */
     function openInBrowser(e) {
-        window.open(e.target.href,"_system","location=yes");
+        window.open(e.target.href,"_blank","location=yes");
         e.preventDefault();
     }
 

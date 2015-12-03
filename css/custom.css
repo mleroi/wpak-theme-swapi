@@ -13,64 +13,10 @@
 
 
 /**
- * @desc Done to fix a reflow bug when screen orientation changes on old devices
- */
-@media screen and (orientation: landscape){
-    .doesnt-exist { background:red; }
-}
-
-/**
  * @desc Fixes the menu scrollbar bug
  */
 .off-canvas-menu {
 	overflow-y: auto;
-}
-
-
-
-/**
- * @desc Fonts
- */
-
-
-@font-face {
-	font-family : "Roboto-Regular";
-	src : url('../fonts/Roboto-Regular.ttf');
-}
-
-@font-face {
-	font-family : "Roboto-Medium";
-	src : url('../fonts/Roboto-Medium.ttf');
-}
-
-@font-face{
-	font-family : "Roboto-Bold";
-	src : url('../fonts/Roboto-Bold.ttf');
-}
-
-@font-face{
-	font-family : "Roboto-BoldItalic";
-	src : url('../fonts/Roboto-BoldItalic.ttf');
-}
-
-@font-face {
-	font-family : "Roboto-Light";
-	src : url('../fonts/Roboto-Light.ttf');
-}
-
-@font-face {
-	font-family : "Roboto-Black";
-	src : url('../fonts/Roboto-Black.ttf');
-}
-
-@font-face {
-	font-family : "Roboto-Thin";
-	src : url('../fonts/Roboto-Thin.ttf');
-}
-
-@font-face{
-	font-family : "Roboto-ThinItalic";
-	src : url('../fonts/Roboto-ThinItalic.ttf');
 }
 
 
@@ -81,19 +27,27 @@
 
 
 body {
-	background-color: #182C36;
-	font-family: Roboto-Regular, sans-serif;
+	background-color:#182C36;
+	font-family:"HelveticaNeue", sans-serif;
 }
 
 .button-tap-on {
-	background-color: #33B5E5;
+	opacity:0.1;
+	-webkit-transition:opacity 0.1s linear;
 }
 
 .button-tap-off {
-	background-color: transparent;
+	opacity:1;
+	-webkit-transition:opacity 0.1s linear;
 }
 
+#app-menu {
+    -webkit-overflow-scrolling:touch; /* Enable srcolling bounce effect when reaching top or bottom */
+}
 
+.content {
+    -webkit-overflow-scrolling:touch; /* Enable srcolling bounce effect when reaching top or bottom */
+}
 
 /**
  * @desc Action Bar
@@ -101,39 +55,47 @@ body {
 
 
 .app-header {
-	background-color: #666666;
-	border-bottom: 2px #585858 solid;
-	box-shadow: 0px 1px 1px #666666 ;
+	background-color:#F8F8F8;
+	border-bottom:1px #B2B2B2 solid;
 }
 
 .app-message-bar {
-	background-color: #c74b46;
-	color: #ffffff;
-	border-bottom: 1px #666666 solid;
-	box-shadow: 0px 1px 1px #666666;
-	line-height: 15px;
+	background-color:#ff5555;
+	color:#3D1414;
+	border-top:1px #A13636 solid;
+	border-bottom:1px #A13636 solid;
 }
 
 .menu-button {
-	background-image: url('../img/menu-icon.svg');	
-	width: 45px;
-	height: 51px;
+	background-image:url('../img/menu-icon.svg');	
+	width:43px;
+	height:50px;
 }
 
 .refresh-off {
-	width: 51px;
-	height: 51px;
-	background-image: url('../img/refresh-off-icon.svg');
+	width:40px;
+	height:50px;
+	background-image:url('../img/refresh-off-icon.svg');
 }
 
 .refresh-on {
-	width: 51px;
-	height: 51px;
-	background-image: url('../img/refresh-on-icon.svg');
+	width:40px;
+	height:50px;
+	background-image:url('../img/refresh-on-icon.svg');
 }
 
 .app-header h1 {
-	color: #ffffff;
+	font-family:HelveticaNeue-Medium,sans-serif;
+}
+
+.back-button {
+	position:absolute;
+	float: left;
+	background-repeat:no-repeat;
+	background-position:center;
+	background-image:url('../img/back-icon.svg');	
+	width:43px;
+	height:50px;
 }
 
 
@@ -144,15 +106,15 @@ body {
 
 
 .list-template .list-title {
-	font-family: Roboto-Medium,sans-serif;
+	font-family:HelveticaNeue-Medium,sans-serif;
 }
 
 .list-template .content-date {
-	font-family: Roboto-Light,sans-serif;
+    font-family:HelveticaNeue-Thin,sans-serif;
 }
 
 .list-template h2 {
-	font-family: Roboto-Medium,sans-serif;
+	font-family:HelveticaNeue-Medium,sans-serif;
 }
 
 
@@ -163,57 +125,57 @@ body {
 
 
 .single-template {
-	font-family: Roboto-Light,sans-serif;
+	font-family:HelveticaNeue-Light,sans-serif;
 }
 
 .single-template h1 {
-	font-family: Roboto-Medium,sans-serif;
+	font-family:HelveticaNeue-Bold,sans-serif;
 }
 
 .single-template .post-excerpt {
-	font-family: Roboto-Bold,sans-serif;
+	font-family:HelveticaNeue-Bold,sans-serif;
 }
 
 .single-content h2 {
-	font-family: Roboto-Medium,sans-serif;
+	font-family:HelveticaNeue-Medium,sans-serif;
 }
 
 .single-content h3 {
-	font-family: Roboto-Medium,sans-serif;
+	font-family:HelveticaNeue-Medium,sans-serif;
 }
 
 .single-content h4 {
-	font-family: Roboto-Medium,sans-serif;
+	font-family:HelveticaNeue-Medium,sans-serif;
 }
 
 .single-content h5, .single-content h6 {
-	font-family: Roboto-Bold,sans-serif;
+	font-family:HelveticaNeue-Bold,sans-serif;
 }
 
 .single-content h5:after, .single-content h6:after {
-	font-family: Roboto-Bold,sans-serif;
+	font-family:HelveticaNeue-Bold,sans-serif;
 }
 
 .single-content strong {
-	font-family: Roboto-Bold,sans-serif;
+	font-family:HelveticaNeue-Bold,sans-serif;
 }
 
 .single-content em {
-	font-family: Roboto-ThinItalic,sans-serif;
+	font-family:HelveticaNeue-Thin_Italic;
 }
 
 .single-content em strong, .single-content strong em {
-	font-family: Roboto-BoldItalic,sans-serif;
+	font-family:HelveticaNeue-BoldItalic;
 }
 
 .single-content a:link {
-	font-family: Roboto-Medium,sans-serif;
+	font-family:HelveticaNeue-Medium;
 }
 
 .single-content blockquote p {
-	font-family: Roboto-BoldItalic,sans-serif;
+	font-family:HelveticaNeue-BoldItalic;
 }
 
 .single-template .post-author {
-	font-family: Roboto-Medium,sans-serif;
+	font-family:HelveticaNeue-Medium;
 }

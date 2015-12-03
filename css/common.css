@@ -75,14 +75,7 @@ body {
 /*
  * @desc Enclose content (auto-added) 
  */
-#app-content-wrapper {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    height: 100%;
-    width: 100%;
-    z-index: 0; /* z-index relative to #app-canvas */
-}
+#app-content-wrapper {}
 
 /*
  * @desc Enclose content (auto-added) 
@@ -105,7 +98,7 @@ body {
 	height: 50px;
 	text-align: center;
     overflow: hidden;
-    z-index: 10; /* z-index relative to #app-canvas */
+    z-index: 0; /* z-index relative to #app-canvas */
 }
 
 /**
@@ -180,7 +173,7 @@ body {
 	padding: 0px 0px 0px 10px;
 	opacity: 0;
     overflow: hidden;
-    z-index: 20; /* z-index relative to #app-canvas */
+    z-index: 10;
 }
 
 
@@ -214,7 +207,7 @@ body {
     left: 0px;
 	width: 100%;
     overflow-y: scroll;
-    z-index: 0; /* z-index relative to #content */
+    z-index: 0; /* z-index relative to #app-canvas */
 }
 
 /*

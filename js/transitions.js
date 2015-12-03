@@ -17,13 +17,11 @@ define( function ( require ) {
 		
         console.log("slideLeft");
         
-/*
         console.log($wrapper);
         console.log("---");
         console.log($current);
         console.log("---");
         console.log($next);
-*/
 
         //Set $next DOM element to the right of the screen (invisible) :
 		$next.css( {

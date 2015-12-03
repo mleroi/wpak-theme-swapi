@@ -13,7 +13,7 @@
  * (AMD) Template Tags   avaialble as    TplTags
  * Velocity (http://julian.com/research/velocity/)
  */
-define(['jquery','core/theme-app','core/modules/storage','core/theme-tpl-tags','theme/js/jquery.velocity.min'],function($,App,Storage,TplTags){
+define(['jquery','core/theme-app','core/modules/storage','core/theme-tpl-tags','theme/js/jquery.velocity.min','theme/js/transitions'],function($,App,Storage,TplTags,Velocity,Transitions){
 
 
     App.filter( 'template-args', function( template_args, view_type, view_template ) { 
@@ -129,6 +129,9 @@ define(['jquery','core/theme-app','core/modules/storage','core/theme-tpl-tags','
 		}else{
 			scrollTop(); // Scroll to the top of screen if we're not displaying a Post List (eg. a Post)
 		}
+
+		$('.app-screen').css({visibility:'visible'});
+
         
 	});
 
@@ -184,7 +187,11 @@ define(['jquery','core/theme-app','core/modules/storage','core/theme-tpl-tags','
 	// Back button events
     $("#app-layout").on("touchstart","#back-button",backButtonTapOn);
     $("#app-layout").on("touchend","#back-button",backButtonTapOff);
-    
+   
+ App.setAutoScreenTransitions( Transitions.replace, Transitions.slideLeft, Transitions.slideRight );
+
+
+ 
     /**
      * Functions
      */
